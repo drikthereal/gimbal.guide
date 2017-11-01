@@ -16,7 +16,7 @@
     <script src="./static/jquery-3.2.1.slim.min.js" defer></script>
     <script src="./static/jquery.csv.min.js" defer></script>
     <script>
-      $(function() {
+      jQuery(function($) {
         var csv = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmNnMRfkOUy3KGfHGaDJ7vBPG1UYVQiPWpxDKLlLCHyOsXd1PsEah_SHInbNx49D_UclLlVPgGFiZo/pub?gid=0&single=true&output=csv';
         var array = $.csv.toArray(csv);
         console.info(array);
