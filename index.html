@@ -1,31 +1,41 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Gimbal Guide</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script>
-      if (location.protocol != 'https:') {
-        location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
-      }
-    </script>
-  </head>
-  <body>
-    Coming soon...
-    
-    <script src="./static/jquery-3.2.1.min.js"></script>
-    <script src="./static/jquery.csv.min.js"></script>
-    <script>
-      $(function() {
-        var csvURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmNnMRfkOUy3KGfHGaDJ7vBPG1UYVQiPWpxDKLlLCHyOsXd1PsEah_SHInbNx49D_UclLlVPgGFiZo/pub?gid=0&single=true&output=csv';
-        $.get(csvURL, function(csv) {
-            var rows = csv.split('\n');
-            $.each(rows, function(i, row) {
-                var cols = row.split(',');
-                console.info(cols);
+    <head>
+        <meta charset="utf-8">
+        <title>Gimbal Guide</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script>
+            if (location.protocol != 'https:') {
+                location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+            }
+        </script>
+    </head>
+
+    <body>
+        Coming soon...
+
+        <script src="./static/jquery-3.2.1.min.js"></script>
+        <script src="./static/jquery.csv.min.js"></script>
+        <script>
+            $(function() {
+                var csvURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmNnMRfkOUy3KGfHGaDJ7vBPG1UYVQiPWpxDKLlLCHyOsXd1PsEah_SHInbNx49D_UclLlVPgGFiZo/pub?gid=0&single=true&output=csv';
+                $.get(csvURL, function(csv) {
+                    var rows = csv.split('\n');
+                    $.each(rows, function(i, row) {
+                        var cols = row.split(',');
+                        console.info(cols);
+                    });
+                });
             });
-        });
-      });
-    </script>
-  </body>
+        </script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109136500-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-109136500-1');
+        </script>
+    </body>
 </html>
