@@ -1,3 +1,3 @@
 ---
 ---
-import { load } from '_coffee/load'
+import { load } from '_coffee/load.coffee'
