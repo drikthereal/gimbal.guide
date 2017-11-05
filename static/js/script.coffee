@@ -1,3 +1,3 @@
 ---
 ---
-{% include '_coffee/load.coffee' %}
+{% include _coffee/load.coffee %}
