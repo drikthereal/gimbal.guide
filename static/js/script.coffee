@@ -1,3 +1,3 @@
 ---
 ---
-import * from '_coffee/load.coffee'
+import '_coffee/load.coffee'
