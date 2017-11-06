@@ -16,12 +16,13 @@ if (window.location.pathname === '/') {
             var cols = row.split(',');
             if (rowIdx === 0) {
                 keys = cols;
+                $.each(keys, function(colIdx, key) {
+                    tableCols.push({title: key.charAt(0).toUpperCase() + key.slice(1), field: key});
+                });
             } else {
                 var colObj = {};
                 $.each(cols, function(colIdx, col) {
-                    var key = keys[colIdx];
-                    colObj[key] = col;
-                    tableCols.push({title: key.charAt(0).toUpperCase() + key.slice(1), field: key});
+                    colObj[keys[colIdx]] = col;
                 });
                 data.push(colObj);
             }
