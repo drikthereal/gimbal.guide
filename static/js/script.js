@@ -13,8 +13,8 @@ if (window.location.pathname === '/') {
                 $.each(cols, function(colIdx, col) {
                     colObj[keys[colIdx]] = col;
                 });
+                console.info(rowIdx, colObj);
             }
-            console.info(rowIdx, colObj);
         });
     });
 }
