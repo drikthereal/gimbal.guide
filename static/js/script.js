@@ -8,7 +8,7 @@ function makeTable(tableData, tableCols) {
 }
 
 if (window.location.pathname === '/') {
-    var keys = [], data = [];
+    var keys = [], data = [], tableCols = [];
     $.get(csvURL, function(csv) {
         var rows = csv.split('\n');
         $.each(rows, function(rowIdx, row) {
@@ -16,7 +16,7 @@ if (window.location.pathname === '/') {
             if (rowIdx === 0) {
                 keys = cols;
             } else {
-                var colObj = {}, tableCols = [];
+                var colObj = {};
                 $.each(cols, function(colIdx, col) {
                     var key = keys[colIdx];
                     colObj[key] = col;
