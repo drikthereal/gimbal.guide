@@ -1,6 +1,7 @@
 var csvURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmNnMRfkOUy3KGfHGaDJ7vBPG1UYVQiPWpxDKLlLCHyOsXd1PsEah_SHInbNx49D_UclLlVPgGFiZo/pub?gid=0&single=true&output=csv';
 
 function makeTable(tableData, tableCols) {
+    console.info(tableData, tableCols);
     $('#data-table').tabulator({
         data: tableData,
         columns: tableCols
