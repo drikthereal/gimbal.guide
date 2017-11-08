@@ -1,4 +1,9 @@
 var csvURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmNnMRfkOUy3KGfHGaDJ7vBPG1UYVQiPWpxDKLlLCHyOsXd1PsEah_SHInbNx49D_UclLlVPgGFiZo/pub?gid=0&single=true&output=csv';
+var mutators = {
+    compatibility: function(val) {
+        return val.split(';').join('<br>');
+    }
+};
 
 function makeTable(tableData, tableCols) {
     console.info(tableData, tableCols);
@@ -17,7 +22,11 @@ if (window.location.pathname === '/') {
             if (rowIdx === 0) {
                 keys = cols;
                 $.each(keys, function(colIdx, key) {
-                    tableCols.push({title: key.charAt(0).toUpperCase() + key.slice(1), field: key});
+                    tableCols.push({
+                        title: key.charAt(0).toUpperCase() + key.slice(1), 
+                        field: key,
+                        mutator: mutators[key]
+                    });
                 });
             } else {
                 var colObj = {};
