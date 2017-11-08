@@ -6,7 +6,6 @@ var mutators = {
 };
 
 function makeTable(tableData, tableCols) {
-    console.info(tableData, tableCols);
     $('#data-table').tabulator({
         data: tableData,
         columns: tableCols
@@ -25,6 +24,7 @@ if (window.location.pathname === '/') {
                     tableCols.push({
                         title: key.charAt(0).toUpperCase() + key.slice(1), 
                         field: key,
+                        formatter: 'html',
                         mutator: mutators[key]
                     });
                 });
