@@ -8,7 +8,8 @@ var mutators = {
 function makeTable(tableData, tableCols) {
     $('#data-table').tabulator({
         data: tableData,
-        columns: tableCols
+        columns: tableCols,
+        layout: 'fitDataFill'
     });
 }
 
