@@ -4,17 +4,21 @@ var mutators = {
         return val.split(';').join('<br>');
     }
 };
+var filters = {
+    compatibility: 'like'
+};
 
-function makeTable(tableData, tableCols) {
+function makeTable(tableData, tableCols, filterOptions) {
     $('#data-table').tabulator({
         data: tableData,
         columns: tableCols,
         layout: 'fitDataFill'
     });
+    console.info('filterOptions', filterOptions);
 }
 
 if (window.location.pathname === '/') {
-    var keys = [], data = [], tableCols = [];
+    var keys = [], data = [], tableCols = [], filterKeys = Object.keys(filters), filterOptions = {};
     $.get(csvURL, function(csv) {
         var rows = csv.split('\n');
         $.each(rows, function(rowIdx, row) {
@@ -32,13 +36,20 @@ if (window.location.pathname === '/') {
             } else {
                 var colObj = {};
                 $.each(cols, function(colIdx, col) {
-                    colObj[keys[colIdx]] = col;
+                    var key = keys[colIdx];
+                    colObj[key] = col;
+                    if (filterKeys.indexOf(key) > -1) {
+                        var newKeys = typeof mutators[key] === undefined ? [col] : mutators[key](col);
+                        $.each(newKeys, function (newKeyIdx, newKey) {
+                            filterOptions[key][newKey] = true;
+                        });
+                    }
                 });
                 data.push(colObj);
             }
         });
         if (data) {
-            makeTable(data, tableCols);
+            makeTable(data, tableCols, filterOptions);
         }
     });
 }
