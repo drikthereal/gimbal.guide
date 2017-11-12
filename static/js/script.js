@@ -23,7 +23,7 @@ function makeTable(tableData, tableCols, filterOptions) {
         layout: 'fitDataFill'
     });
     var filterHtml = '';
-    $.each(filters, function(key, val) {
+    $.each(filterOptions, function(key, val) {
         var options = Object.keys(val);
         filterHtml += '<div>' + key + '<ul>';
         $.each(options, function(idx, option) {
