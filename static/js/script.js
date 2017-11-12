@@ -1,5 +1,7 @@
 var csvURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQmNnMRfkOUy3KGfHGaDJ7vBPG1UYVQiPWpxDKLlLCHyOsXd1PsEah_SHInbNx49D_UclLlVPgGFiZo/pub?gid=0&single=true&output=csv';
 var SPLIT_SEPARATOR = ';';
+var $tabulator;
+var $el = $('#data-table');
 
 var mutators = {
     compatibility: function(val) {
@@ -10,13 +12,26 @@ var filters = {
     compatibility: 'like'
 };
 
+function filter(key, val) {
+    $tabulator.tabulator('setFilter', key, 'like', val);
+}
+
 function makeTable(tableData, tableCols, filterOptions) {
-    $('#data-table').tabulator({
+    $tabulator = $el.tabulator({
         data: tableData,
         columns: tableCols,
         layout: 'fitDataFill'
     });
-    console.info('filterOptions', filterOptions);
+    var filterHtml = '';
+    $.each(filters, function(key, val) {
+        var options = Object.keys(val);
+        filterHtml += '<div>' + key + '<ul>';
+        $.each(options, function(idx, option) {
+            filterHtml += '<li onclick="filter('+key+','+option+')">' + option + '</li>';
+        });
+        filterHtml += '<ul></div>';
+    });
+    $el.prepend(filterHtml);
 }
 
 if (window.location.pathname === '/') {
