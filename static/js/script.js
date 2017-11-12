@@ -12,6 +12,10 @@ var filters = {
     compatibility: 'like'
 };
 
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 function filter(key, val) {
     $tabulator.tabulator('setFilter', key, 'like', val);
 }
@@ -22,15 +26,16 @@ function makeTable(tableData, tableCols, filterOptions) {
         columns: tableCols,
         layout: 'fitDataFill'
     });
-    var filterHtml = '';
+    var filterHtml = '<div id="filters">';
     $.each(filterOptions, function(key, val) {
         var options = Object.keys(val);
-        filterHtml += '<div>' + key + '<ul>';
+        filterHtml += '<div class="filter ' + key + '">' + capitalize(key) + '<ul>';
         $.each(options, function(idx, option) {
             filterHtml += '<li onclick="filter(\''+key+'\',\''+option+'\')">' + option + '</li>';
         });
         filterHtml += '<ul></div>';
     });
+    filterHtml += '</div>';
     $el.prepend(filterHtml);
 }
 
@@ -44,7 +49,7 @@ if (window.location.pathname === '/') {
                 keys = cols;
                 $.each(keys, function(colIdx, key) {
                     tableCols.push({
-                        title: key.charAt(0).toUpperCase() + key.slice(1), 
+                        title: capitalize(key), 
                         field: key,
                         formatter: 'html',
                         mutator: mutators[key]
