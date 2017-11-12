@@ -27,7 +27,7 @@ function makeTable(tableData, tableCols, filterOptions) {
         var options = Object.keys(val);
         filterHtml += '<div>' + key + '<ul>';
         $.each(options, function(idx, option) {
-            filterHtml += '<li onclick="filter('+key+','+option+')">' + option + '</li>';
+            filterHtml += '<li onclick="filter(\''+key+'\',\''+option+'\')">' + option + '</li>';
         });
         filterHtml += '<ul></div>';
     });
