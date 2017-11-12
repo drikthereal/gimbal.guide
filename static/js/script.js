@@ -43,6 +43,7 @@ if (window.location.pathname === '/') {
                     if (filterKeys.indexOf(key) > -1) {
                         var newKeys = col.split(SPLIT_SEPARATOR);
                         $.each(newKeys, function (newKeyIdx, newKey) {
+                            filterOptions[key] = filterOptions[key] || {};
                             filterOptions[key][newKey] = true;
                         });
                     }
